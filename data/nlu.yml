@@ -16,6 +16,8 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    #  - කොහොමද
+    # - ඔයාට කොහොමද
 
 - intent: goodbye
   examples: |
