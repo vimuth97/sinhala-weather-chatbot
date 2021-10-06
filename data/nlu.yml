@@ -3,35 +3,33 @@ version: "2.0"
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
-    #  - කොහොමද
-    # - ඔයාට කොහොමද
+    - සුබ සන්ද්‍යාවක්
+    - සුභ සන්ද්‍යාවක්
+    - සුබසන්ද්‍යාවක්
+    - සුබ උදෑසනක්
+    - සුබ දහවලක්
+    - කොහොමද
+    - ඔයාට කොහොමද
+    - හායි 
+    - හෙලෝ
+    - හෙලෝ මචං
+    - හේයි
+    - ආයුබෝවන්
+    - ආයුබෝවේවා
+    - ඔබට කොහොමද
 
 - intent: goodbye
   examples: |
-    - good afternoon
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - බුදු සරණයි
+    - බුදු සරනයි
+    - දෙවි පිහිටයි
+    - සුබ රාත්‍රියක්
+    - සුබ රාත්රියක්
+    - සුබ දවසක්
+    - නැවත හමුවෙමු
+    - බායි
+    - සුබගමන්
+    - බායි බායි
 
 - intent: affirm
   examples: |
