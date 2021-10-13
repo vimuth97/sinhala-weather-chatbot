@@ -5,23 +5,23 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
-# This is a simple example for a custom action which utters "Hello World!"
-
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
 
-
-class ActionHelloWorld(Action):
+class ActionWeatherSearch(Action):
 
     def name(self) -> Text:
-        return "action_hello_world"
+        return "action_weather_search"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Hello World!")
+        location = tracker.get_slot("location")
+        date  = tracker.get_slot("date")
+        dispatcher.utter_message(text="Searching for weather report of {} on {}".format(location, date))
 
-        return []
+        return [SlotSet("text", "from database")]
