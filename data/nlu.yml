@@ -10,7 +10,7 @@ nlu:
     - සුබ දහවලක්
     - කොහොමද
     - ඔයාට කොහොමද
-    - හායි 
+    - හායි
     - හෙලෝ
     - හෙලෝ මචං
     - හේයි
@@ -62,9 +62,10 @@ nlu:
 
 - intent: inform
   examples: |
-    - [කොළඹ](location)
-    - [ගම්පහ](location) කාලගුණය කොහොමද?
-
+    - මට [හෙට](date) [කොළඹ](location) කාලගුණය දැනගන්න පුලුවන්ද?
+    - [අද](date) [ගම්පහ](location) කාලගුණය කොහොමද?
+    - [නුවර](location) කාලගුණය [හෙට](date) කොහොම වේවිද?
+# අනුරාධපුර කාලගුණය හෙට කොහොම වේවිද?
 - lookup: location
   examples: |
     - කොළඹ
@@ -100,40 +101,6 @@ nlu:
     - නැගෙනහිර
     - බස්නාහිර
     - සබරගමු 
-
-# - intent: mood_great
-#   examples: |
-#     - perfect
-#     - great
-#     - amazing
-#     - feeling like a king
-#     - wonderful
-#     - I am feeling very good
-#     - I am great
-#     - I am amazing
-#     - I am going to save the world
-#     - super stoked
-#     - extremely good
-#     - so so perfect
-#     - so good
-#     - so perfect
-
-# - intent: mood_unhappy
-#   examples: |
-#     - my day was horrible
-#     - I am sad
-#     - I don't feel very well
-#     - I am disappointed
-#     - super sad
-#     - I'm so sad
-#     - sad
-#     - very sad
-#     - unhappy
-#     - not good
-#     - not very good
-#     - extremly sad
-#     - so saad
-#     - so sad
 
 # - intent: bot_challenge
 #   examples: |

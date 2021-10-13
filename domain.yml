@@ -15,16 +15,35 @@ intents:
 
 
 entities:
-- location
-
+  - location
+  - date
 
 responses:
   utter_greet:
-  - text: Hey! How are you?
+    - text: ආයුබෝවන්! ඔබට අවශ්‍ය උපකාරය කුමක්ද?
+    - text: සුබ දවසක්! ඔබට කාලගුණය දැනගැනීමට අවශ්‍ය කුමන ප්‍රදේශයේද?
   utter_goodbye:
-  - text: Bye
+    - text: බායි!
+    - text: නැවත හමුවෙමු!
+    - text: සුබ දවසක්!
 
-  
+
+forms:
+  utter_weather:
+    required_slots:
+        location:
+          - type: from_entity
+            entity: location
+        date:
+          - type: from_entity
+            entity: date
+
+
 actions:
-- utter_goodbye
-- utter_greet
+  - utter_goodbye
+  - utter_greet
+  - utter_weather
+  - utter_weather_summary
+  - utter_temp
+  - utter_wind
+  - utter_rainfall
