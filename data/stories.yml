@@ -9,17 +9,12 @@ stories:
     entities:
     - location: "මඩකලපුව"
     - date: "පෙරේදා"
+    - weather_condition: "සුළග"
   - action: action_weather_search
   - slot_was_set: 
     - weather: "from database"
-  - action: utter_weather
-  - intent: inform_condition
-    entities:
-    - weather_condition: "සුළග"
-  - action: action_weather_condition_search
-  - slot_was_set: 
-    - weather_condition_results: "from database"
-  - action: utter_weather_condition
+    # - weather_condition: "from database"
+  - action: utter_weather 
   - intent: goodbye
   - action: utter_goodbye
 
