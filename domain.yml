@@ -12,11 +12,13 @@ intents:
 - affirm
 - deny
 - inform
+- inform_condition
 
 
 entities:
   - location
   - date
+  - weather_condition
 
 
 slots:
@@ -26,9 +28,13 @@ slots:
   date:
     type: text
     influence_conversation: true
-  text:
+  weather:
     type: text
-
+  weather_condition:
+    type: text
+    influence_conversation: true
+  weather_condition_results:
+    type: text
 
 responses:
   utter_greet:
@@ -39,18 +45,9 @@ responses:
     - text: නැවත හමුවෙමු!
     - text: සුබ දවසක්!
   utter_weather:
-    - text: "Weather report - {text}"
-
-
-# forms:
-#   utter_weather:
-#     required_slots:
-#         location:
-#           - type: from_entity
-#             entity: location
-#         date:
-#           - type: from_entity
-#             entity: date
+    - text: "කාලගුණ වාර්තාව - {weather}"
+  utter_weather_condition:
+    - text: "{weather_condition} - {weather_condition_results}"
 
 
 actions:
@@ -58,7 +55,6 @@ actions:
   - utter_greet
   - utter_weather
   - action_weather_search
+  - utter_weather_condition
+  - action_weather_condition_search
   # - utter_weather_summary
-  # - utter_temp
-  # - utter_wind
-  # - utter_rainfall

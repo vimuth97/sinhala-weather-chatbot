@@ -11,8 +11,15 @@ stories:
     - date: "පෙරේදා"
   - action: action_weather_search
   - slot_was_set: 
-    - text: "from database"
+    - weather: "from database"
   - action: utter_weather
+  - intent: inform_condition
+    entities:
+    - weather_condition: "සුළග"
+  - action: action_weather_condition_search
+  - slot_was_set: 
+    - weather_condition_results: "from database"
+  - action: utter_weather_condition
   - intent: goodbye
   - action: utter_goodbye
 
