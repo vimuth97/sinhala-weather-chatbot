@@ -4,6 +4,7 @@ pipeline:
   - name: WhitespaceTokenizer
   - name: RegexEntityExtractor
     use_lookup_tables: True
+    # use_regexes: True
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
