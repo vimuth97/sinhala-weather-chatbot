@@ -34,3 +34,11 @@ weather_data = {
         } 
     }
 }
+
+weather_summary = {
+     0 : "ada lanakawema summary eka",
+     1 : "heta lanakawema summary eka",
+     2 : "anidda lanakawema summary eka",
+     -2 : "pereda lanakawema summary eka",
+     -1 : "iye lanakawema summary eka",
+}

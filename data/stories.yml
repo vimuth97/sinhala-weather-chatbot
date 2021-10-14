@@ -13,8 +13,12 @@ stories:
   - action: action_weather_search
   - slot_was_set: 
     - weather: "from database"
-    # - weather_condition: "from database"
   - action: utter_weather 
+  - intent: inform_summary
+  - action: action_weather_summary_search
+  - slot_was_set: 
+    - weather_summary: "from database"
+  - action: utter_weather_summary
   - intent: goodbye
   - action: utter_goodbye
 

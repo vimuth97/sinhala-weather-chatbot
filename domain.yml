@@ -12,6 +12,7 @@ intents:
 - affirm
 - deny
 - inform
+- inform_summary
 
 
 entities:
@@ -29,8 +30,10 @@ slots:
     influence_conversation: true
   weather:
     type: text
+    influence_conversation: true
   weather_condition:
     type: text
+    influence_conversation: true
 
 responses:
   utter_greet:
@@ -41,12 +44,20 @@ responses:
     - text: නැවත හමුවෙමු!
     - text: සුබ දවසක්!
   utter_weather:
-    - text: "{weather_condition} වාර්තාව - {weather}"
+    - condition:
+      - type: slot
+        name: weather_condition
+        value: null
+      text: "කාලගුණ වාර්තාව - {weather}"
+    - text: "{weather_condition} - {weather}"
+  utter_weather_summary:
+    - text: This is weather summary
 
 
 actions:
   - utter_goodbye
   - utter_greet
   - utter_weather
+  - utter_weather_summary
   - action_weather_search
-  # - utter_weather_summary
+  - action_weather_summary_search
