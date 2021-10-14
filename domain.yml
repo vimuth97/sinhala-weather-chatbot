@@ -34,6 +34,9 @@ slots:
   weather_condition:
     type: text
     influence_conversation: true
+  summary:
+    type: text
+    influence_conversation: true
 
 responses:
   utter_greet:
@@ -51,7 +54,7 @@ responses:
       text: "කාලගුණ වාර්තාව - {weather}"
     - text: "{weather_condition} - {weather}"
   utter_weather_summary:
-    - text: This is weather summary
+    - text: "කාලගුණ සාරාංශය - {summary}"
 
 
 actions:

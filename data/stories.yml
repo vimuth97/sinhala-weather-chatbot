@@ -17,10 +17,24 @@ stories:
   - intent: inform_summary
   - action: action_weather_summary_search
   - slot_was_set: 
-    - weather_summary: "from database"
+    - summary: "from database"
   - action: utter_weather_summary
   - intent: goodbye
   - action: utter_goodbye
+
+
+- story: happy path summary
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform_summary
+  - action: action_weather_summary_search
+  - slot_was_set: 
+    - summary: "from database"
+  - action: utter_weather_summary
+  - intent: goodbye
+  - action: utter_goodbye
+
 
 # - story: sad path 1
 #   steps:
