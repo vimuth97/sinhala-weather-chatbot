@@ -51,7 +51,7 @@ responses:
       - type: slot
         name: weather_condition
         value: null
-      text: "කාලගුණ වාර්තාව - {weather}"
+      text: "{weather}"
     - text: "{weather_condition} - {weather}"
   utter_weather_summary:
     - text: "කාලගුණ සාරාංශය - {summary}"
