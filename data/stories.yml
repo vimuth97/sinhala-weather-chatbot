@@ -13,6 +13,7 @@ stories:
   - action: action_weather_search
   - slot_was_set: 
     - weather: "from database"
+    - weather_condition: null
   - action: utter_weather 
   - intent: inform_summary
   - action: action_weather_summary_search
