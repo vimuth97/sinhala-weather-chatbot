@@ -26,7 +26,7 @@ class ActionWeatherSearch(Action):
 
         if parse_date:
             if -8 < parsed_date < 8:
-                dispatcher.utter_message(text="{} දින {} {} තොරතුරු සොයමින් පවතී.".format(date, location, condition))
+                dispatcher.utter_message(text="{} දින {} {} පිළිබද තොරතුරු සොයමින් පවතී.".format(date, location, condition))
                 return [
                     SlotSet("weather", weather_data[location][parsed_date][condition]),
                     SlotSet("weather_condition", None)
