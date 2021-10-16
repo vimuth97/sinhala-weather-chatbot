@@ -40,16 +40,7 @@ class ActionWeatherSummarySearch(Action):
         date  = tracker.get_slot("date")
         parsed_date = parse_date(date)
 
-        if parse_date:
-            if -4 < parsed_date < 4:
-                dispatcher.utter_message(text="{} දින කාලගුණ සාරාංශය සොයමින් පවතී.".format(date))
-                return [SlotSet("summary", weather_summary[parsed_date])]
-            else:
-                dispatcher.utter_message(text="date {} not in range".format(date))
-                return []
-        else:
-            dispatcher.utter_message(text="invalid date {}".format(date))
-            return []
+        return [SlotSet("summary", weather_summary[parsed_date])]
 
 
 class ActionResetWeatherCondition(Action):
@@ -77,8 +68,8 @@ class ValidateWeatherForm(FormValidationAction):
     ) -> Dict[Text, Any]:
 
         parsed_date = parse_date(slot_value)
-        print("hi")
-        if parsed_date:
+
+        if parsed_date != None:
             if -4 < parsed_date < 4:
                 return {"date": slot_value}
             else:

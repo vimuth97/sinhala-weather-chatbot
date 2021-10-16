@@ -53,11 +53,13 @@ responses:
   - text: what is the date?
   utter_submit:
   - condition:
-        - type: slot
-          name: weather_condition
-          value: null
+    - type: slot
+      name: weather_condition
+      value: null
     text: '{date} දින {location} කාලගුණය පිළිබද තොරතුරු සොයමින් පවතී.'
   - text: '{date} දින {location} {weather_condition} පිළිබද තොරතුරු සොයමින් පවතී.'
+  utter_submit_summary:
+  - text: '{date} දින කාලගුණ සාරාංශය සොයමින් පවතී.'
   utter_weather:
   - text: '{weather}'
 
@@ -69,6 +71,7 @@ actions:
 - utter_goodbye
 - utter_greet
 - utter_submit
+- utter_submit_summary
 - utter_weather
 - utter_weather_summary
 - action_reset_weather_condition
@@ -86,3 +89,9 @@ forms:
       location:
       - type: from_text
         entity: location
+  
+  weather_summary_form:
+    required_slots:
+      date:
+      - type: from_text
+        entity: date
