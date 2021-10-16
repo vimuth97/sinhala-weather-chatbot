@@ -13,5 +13,6 @@
 * `rasa init` - initiate rasa project 
 * `rasa train` - train new model on nlu data stories
 * `rasa shell` - load most recently trained model on command line
+* `rasa interactive` - load most recently trained model on interactive mode
 * `rasa run` -  start a new server with the trained model
 * `rasa run actions` - run actions on a server
