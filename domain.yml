@@ -98,7 +98,7 @@ forms:
       - type: from_text
         entity: date
       location:
-      - type: from_text
+      - type: from_entity
         entity: location
   
   weather_summary_form:

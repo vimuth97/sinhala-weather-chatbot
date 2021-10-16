@@ -4,7 +4,7 @@ pipeline:
   - name: WhitespaceTokenizer
   - name: RegexEntityExtractor
     use_lookup_tables: True
-    # use_regexes: True
+    use_regexes: True
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
@@ -14,7 +14,6 @@ pipeline:
   - name: DIETClassifier
     constrain_similarities: true
     epochs: 100
-    # entity_recognition: False
   - name: EntitySynonymMapper
   - name: ResponseSelector
     constrain_similarities: true
@@ -24,10 +23,9 @@ policies:
   - name: MemoizationPolicy
   - name: RulePolicy
   - name: UnexpecTEDIntentPolicy
-    max_history: 5
+    max_history: 3
     epochs: 100
   - name: TEDPolicy
-    max_history: 5
+    max_history: 3
     epochs: 100
     constrain_similarities: true
-  # - name: FormPolicy

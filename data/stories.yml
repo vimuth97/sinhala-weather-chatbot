@@ -8,7 +8,41 @@ stories:
   - intent: goodbye
   - action: utter_goodbye
 
-  
+- story: weather_happy_path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform
+    entities:
+    - location: නුවරඑළිය
+    - date: අද
+    - weather_condition: සුළග
+  - slot_was_set:
+    - location: නුවරඑළිය
+  - slot_was_set:
+    - date: අද
+  - slot_was_set:
+    - weather_condition: සුළග
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+    - date: අද
+  - slot_was_set:
+    - location: නුවරඑළිය
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_weather_search
+  - slot_was_set:
+    - weather: සුළං දකුණු දෙසින් හමා එයි. සුළගේ වේගය විටින් විට පැ.කි.මී. (50-55) පමණ දක්වා වැඩි විය හැක.
+  - action: utter_weather
+  - action: action_reset_weather_condition
+  - slot_was_set:
+    - weather_condition: null
+  - intent: goodbye
+  - action: utter_goodbye
+
 - story: weather_summary_happy_path
   steps:
   - intent: greet
@@ -33,41 +67,188 @@ stories:
   - intent: goodbye
   - action: utter_goodbye
 
-
-- story: humidity_happy_path
+- story: weather_summary_utter_date
   steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform_summary
+  - action: weather_summary_form
+  - active_loop: weather_summary_form
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: 10-15
+  - slot_was_set:
+    - date: 10-15
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_summary
+  - action: action_weather_summary_search
+  - slot_was_set:
+    - summary: බස්නාහිර, සබරගමුව, මධ්‍යම සහ වයඹ පළාත්වලත් ගාල්ල සහ මාතර දිස්ත්‍රික්කවලත් වැසි වාර කිහිපයක් ඇතිවේ. උතුරු සහ උතුරු මැද  පළාත්වල වැසි ස්වල්පයක් ඇති විය හැක. දිවයිනේ සෙසු ප්‍රදේශ වල ප්‍රධාන වශයෙන් වැසි රහිත කාලගුණ තත්ත්වයක් පවතිනු ඇත.
+  - action: utter_weather_summary
+
+- story: weather_summary_invalid_date
+  steps:
+  - intent: inform_summary
+    entities:
+    - date: 10-25
+  - slot_was_set:
+    - date: 10-25
+  - action: weather_summary_form
+  - active_loop: weather_summary_form
+  - slot_was_set:
+    - date: null
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: 10/16
+  - slot_was_set:
+    - date: 10/16
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_summary
+  - action: action_weather_summary_search
+  - slot_was_set:
+    - summary: කන්කසන්තුරය සිට පුත්තලම, කොළඹ සහ ගාල්ල හරහා හම්බන්තොට දක්වා වන මුහුදු ප්‍රදේශවලතැනින් තැන වැසි ඇතිවේ. දිවයින වටා වන ගැඹුරු සහ නොගැඹුරු මුහුදු ප්‍රදේශවල සුළං වේගයේ තරමක වැඩි වීමක් අපේක්ෂා කෙරේ. ධීවර සහ නාවික ප්‍රජාව මේ පිළිබඳ අවධානයෙන් කටයුතු කරන ලෙස ඉල්ලා සිටිනු ලැබේ.
+  - action: utter_weather_summary
+
+- story: interactive_story_1
+  steps:
+  - intent: inform_summary
+    entities:
+    - date: 10-15
+  - slot_was_set:
+    - date: 10-15
+  - action: weather_summary_form
+  - active_loop: weather_summary_form
+  - slot_was_set:
+    - date: 10-15
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_summary
+  - action: action_weather_summary_search
+  - slot_was_set:
+    - summary: බස්නාහිර, සබරගමුව, මධ්‍යම සහ වයඹ පළාත්වලත් ගාල්ල සහ මාතර දිස්ත්‍රික්කවලත් වැසි වාර කිහිපයක් ඇතිවේ. උතුරු සහ උතුරු මැද  පළාත්වල වැසි ස්වල්පයක් ඇති විය හැක. දිවයිනේ සෙසු ප්‍රදේශ වල ප්‍රධාන වශයෙන් වැසි රහිත කාලගුණ තත්ත්වයක් පවතිනු ඇත.
+  - action: utter_weather_summary
   - intent: inform
     entities:
-    - weather_condition: ආර්ද්‍රතාවය
+    - weather_condition: වර්ෂාපතනය
     - location: ගාල්ල
-    - date: 10/13
+    - date: ඊයෙ
   - slot_was_set:
     - location: ගාල්ල
   - slot_was_set:
-    - date: 10/13
+    - date: ඊයෙ
   - slot_was_set:
-    - weather_condition: ආර්ද්‍රතාවය
+    - weather_condition: වර්ෂාපතනය
   - action: weather_form
   - active_loop: weather_form
   - slot_was_set:
-    - date: 10/13
+    - date: ඊයෙ
   - slot_was_set:
     - location: ගාල්ල
-  - slot_was_set:
-    - weather_condition: ආර්ද්‍රතාවය
-  - slot_was_set:
-    - date: 10/13
-  - slot_was_set:
-    - location: ගාල්ල
-  - slot_was_set:
-    - weather_condition: ආර්ද්‍රතාවය
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: utter_submit
   - action: action_weather_search
   - slot_was_set:
-    - weather: "උපරිම සාපේක්ෂ ආර්ද්‍රතාවය - 95%\nඅවම සාපේක්ෂ ආර්ද්‍රතාවය - 60%"
+    - weather: උපරිම වර්ෂාපතනය - 50mm
+  - action: utter_weather
+  - action: action_reset_weather_condition
+  - slot_was_set:
+    - weather_condition: null
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform_summary
+    entities:
+    - date: ඊයෙ
+  - slot_was_set:
+    - date: ඊයෙ
+  - action: weather_summary_form
+  - active_loop: weather_summary_form
+  - slot_was_set:
+    - date: ඊයෙ
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_summary
+  - action: action_weather_summary_search
+  - slot_was_set:
+    - summary: බස්නාහිර, සබරගමුව, මධ්‍යම සහ වයඹ පළාත්වලත් ගාල්ල සහ මාතර දිස්ත්‍රික්කවලත් වැසි වාර කිහිපයක් ඇතිවේ. උතුරු සහ උතුරු මැද  පළාත්වල වැසි ස්වල්පයක් ඇති විය හැක. දිවයිනේ සෙසු ප්‍රදේශ වල ප්‍රධාන වශයෙන් වැසි රහිත කාලගුණ තත්ත්වයක් පවතිනු ඇත.
+  - action: utter_weather_summary
+  - intent: inform
+    entities:
+    - location: නුවරඑළිය
+    - date: 1-13
+    - weather_condition: සුළග
+  - slot_was_set:
+    - location: නුවරඑළිය
+  - slot_was_set:
+    - date: 1-13
+  - slot_was_set:
+    - weather_condition: සුළග
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+    - date: null
+  - slot_was_set:
+    - location: නුවරඑළිය
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: 10-15
+  - slot_was_set:
+    - date: 10-15
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_weather_search
+  - slot_was_set:
+    - weather: සුළං නිරිත දෙසින් හමා එයි. සුළගේ වේගය පැ.කි.මී. (20-30) පමණ වේ.
+  - action: utter_weather
+  - action: action_reset_weather_condition
+  - slot_was_set:
+    - weather_condition: null
+
+- story: interactive_story_3
+  steps:
+  - intent: inform
+    entities:
+    - weather_condition: ආර්ද්‍රතාවය
+  - slot_was_set:
+    - weather_condition: ආර්ද්‍රතාවය
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: 10-15
+  - slot_was_set:
+    - date: 10-15
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - location: නුවරඑළිය
+  - slot_was_set:
+    - location: නුවරඑළිය
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
+  - action: action_weather_search
+  - slot_was_set:
+    - weather: "උපරිම සාපේක්ෂ ආර්ද්‍රතාවය - 50%\nඅවම සාපේක්ෂ ආර්ද්‍රතාවය - 40%"
   - action: utter_weather
   - action: action_reset_weather_condition
   - slot_was_set:
