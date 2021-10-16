@@ -1,8 +1,9 @@
 from typing import Any, Text, Dict, List
 
-from rasa_sdk import Action, Tracker
+from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
+from rasa_sdk.types import DomainDict
 
 from dummy_data.data import weather_data, weather_summary
 from actions.helpers import parse_date
@@ -19,20 +20,12 @@ class ActionWeatherSearch(Action):
 
         location = tracker.get_slot("location")
         date  = tracker.get_slot("date")
-        parsed_date = parse_date(date)
+        date = parse_date(date)
         condition  = tracker.get_slot("weather_condition")
 
         if not condition:
             condition = "කාලගුණය"
-        if parse_date:
-            if -4 < parsed_date < 4:
-                return [SlotSet("weather", weather_data[location][parsed_date][condition])]
-            else:
-                dispatcher.utter_message(text="date {} not in range".format(date))
-                return []
-        else:
-            dispatcher.utter_message(text="invalid date {}".format(date))
-            return []
+        return [SlotSet("weather", weather_data[location][date][condition])]
 
 
 class ActionWeatherSummarySearch(Action):
@@ -71,24 +64,27 @@ class ActionResetWeatherCondition(Action):
         return[SlotSet("weather_condition", None)]
 
 
-class ActionValidateDate(Action):
-    
+class ValidateWeatherForm(FormValidationAction):
     def name(self) -> Text:
-        return "action_validate_date"
+        return "validate_weather_form"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def validate_date(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict
+    ) -> Dict[Text, Any]:
 
-        date  = tracker.get_slot("date")
-        parsed_date = parse_date(date)
-
-        if parse_date:
+        parsed_date = parse_date(slot_value)
+        print("hi")
+        if parsed_date:
             if -4 < parsed_date < 4:
-                return []
+                return {"date": slot_value}
             else:
-                dispatcher.utter_message(text="date {} not in range".format(date))
-                return []
+                dispatcher.utter_message(text="date {} not in range".format(slot_value))
+                return {"date": None}
         else:
-            dispatcher.utter_message(text="invalid date {}".format(date))
-            return []
+            dispatcher.utter_message(text="invalid date {}".format(slot_value))
+            return {"date": None}
+

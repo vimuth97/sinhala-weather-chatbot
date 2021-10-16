@@ -74,14 +74,15 @@ actions:
 - action_reset_weather_condition
 - utter_ask_location
 - utter_ask_date
+- validate_weather_form
 
 
 forms:
   weather_form:
     required_slots:
       date:
-      - type: from_entity
+      - type: from_text
         entity: date
       location:
-      - type: from_entity
+      - type: from_text
         entity: location

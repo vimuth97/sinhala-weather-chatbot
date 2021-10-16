@@ -12,10 +12,12 @@ pipeline:
     min_ngram: 1
     max_ngram: 4
   - name: DIETClassifier
+    constrain_similarities: true
     epochs: 100
     # entity_recognition: False
   - name: EntitySynonymMapper
   - name: ResponseSelector
+    constrain_similarities: true
     epochs: 100
 
 policies:
