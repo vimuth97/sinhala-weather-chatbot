@@ -64,3 +64,4 @@ actions:
   - utter_weather_summary
   - action_weather_search
   - action_weather_summary_search
+  - action_validate_date

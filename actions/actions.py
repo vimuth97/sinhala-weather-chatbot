@@ -7,6 +7,7 @@ from rasa_sdk.events import SlotSet
 from dummy_data.data import weather_data, weather_summary
 from actions.helpers import parse_date
 
+
 class ActionWeatherSearch(Action):
 
     def name(self) -> Text:
@@ -15,7 +16,6 @@ class ActionWeatherSearch(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
         location = tracker.get_slot("location")
         date  = tracker.get_slot("date")
         parsed_date = parse_date(date)
@@ -23,23 +23,15 @@ class ActionWeatherSearch(Action):
 
         if not condition:
             condition = "කාලගුණය"
-
-        if parse_date:
-            if -8 < parsed_date < 8:
-                dispatcher.utter_message(text="{} දින {} {} පිළිබද තොරතුරු සොයමින් පවතී.".format(date, location, condition))
-                return [
-                    SlotSet("weather", weather_data[location][parsed_date][condition]),
-                    SlotSet("weather_condition", None)
-                    ]
-            else:
-                dispatcher.utter_message(text="date {} not in range".format(date))
-                return []
-        else:
-            dispatcher.utter_message(text="invalid date {}".format(date))
-            return []
+        dispatcher.utter_message(text="{} දින {} {} පිළිබද තොරතුරු සොයමින් පවතී.".format(date, location, condition))
+        return [
+                SlotSet("weather", weather_data[location][parsed_date][condition]),
+                SlotSet("weather_condition", None)
+                ]
 
 
 class ActionWeatherSummarySearch(Action):
+    print("hi")
     
     def name(self) -> Text:
         return "action_weather_summary_search"
@@ -52,9 +44,32 @@ class ActionWeatherSummarySearch(Action):
         parsed_date = parse_date(date)
 
         if parse_date:
-            if -8 < parsed_date < 8:
+            if -4 < parsed_date < 4:
                 dispatcher.utter_message(text="{} දින කාලගුණ සාරාංශය සොයමින් පවතී.".format(date))
                 return [SlotSet("summary", weather_summary[parsed_date])]
+            else:
+                dispatcher.utter_message(text="date {} not in range".format(date))
+                return []
+        else:
+            dispatcher.utter_message(text="invalid date {}".format(date))
+            return []
+
+
+class ActionValidateDate(Action):
+    
+    def name(self) -> Text:
+        return "action_validate_date"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        date  = tracker.get_slot("date")
+        parsed_date = parse_date(date)
+
+        if parse_date:
+            if -4 < parsed_date < 4:
+                return []
             else:
                 dispatcher.utter_message(text="date {} not in range".format(date))
                 return []
