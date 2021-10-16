@@ -73,10 +73,10 @@ class ValidateWeatherForm(FormValidationAction):
             if -4 < parsed_date < 4:
                 return {"date": slot_value}
             else:
-                dispatcher.utter_message(text="date {} not in range".format(slot_value))
+                dispatcher.utter_message(text="{} දිනයට අදාළ තොරතුරු මා ලග නැත. වෙනත් දිනයක් ඇතුලත් කරන්න".format(slot_value))
                 return {"date": None}
         else:
-            dispatcher.utter_message(text="invalid date {}".format(slot_value))
+            dispatcher.utter_message(text="ඇතුලත් කල දිනය {} අවලංගුයි".format(slot_value))
             return {"date": None}
 
 
@@ -98,8 +98,8 @@ class ValidateWeatherSummaryForm(FormValidationAction):
             if -4 < parsed_date < 4:
                 return {"date": slot_value}
             else:
-                dispatcher.utter_message(text="date {} not in range".format(slot_value))
+                dispatcher.utter_message(text="{} දිනයට අදාළ තොරතුරු මා ලග නැත. වෙනත් දිනයක් ඇතුලත් කරන්න".format(slot_value))
                 return {"date": None}
         else:
-            dispatcher.utter_message(text="invalid date {}".format(slot_value))
+            dispatcher.utter_message(text="ඇතුලත් කල දිනය {} අවලංගුයි".format(slot_value))
             return {"date": None}

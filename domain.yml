@@ -40,7 +40,7 @@ slots:
 responses:
   utter_greet:
   - text: ආයුබෝවන්! ඔබට අවශ්‍ය උපකාරය කුමක්ද?
-  - text: සුබ දවසක්! ඔබට කාලගුණය දැනගැනීමට පුලුවන්
+  - text: සුබ දවසක්! ඔබට මගෙන් කාලගුණය දැනගැනීමට පුලුවන්
   utter_goodbye:
   - text: බායි!
   - text: නැවත හමුවෙමු!
@@ -48,9 +48,19 @@ responses:
   utter_weather_summary:
   - text: කාලගුණ සාරාංශය - {summary}
   utter_ask_location:
-  - text: what is the location?
+  - condition:
+    - type: slot
+      name: weather_condition
+      value: null
+    text: ඔබට කාලගුණය දැනගැනීමට අවශ්‍ය ස්ථානය කුමක්ද?
+  - text: ඔබට {weather_condition} දැනගැනීමට අවශ්‍ය ස්ථානය කුමක්ද?
   utter_ask_date:
-  - text: what is the date?
+  - condition:
+    - type: slot
+      name: weather_condition
+      value: null
+    text: ඔබට කාලගුණය දැනගැනීමට අවශ්‍ය දිනය කුමක්ද?
+  - text: ඔබට {weather_condition} දැනගැනීමට අවශ්‍ය දිනය කුමක්ද?
   utter_submit:
   - condition:
     - type: slot
