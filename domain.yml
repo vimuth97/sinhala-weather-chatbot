@@ -78,6 +78,7 @@ actions:
 - utter_ask_location
 - utter_ask_date
 - validate_weather_form
+- validate_weather_summary_form
 
 
 forms:

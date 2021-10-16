@@ -79,3 +79,27 @@ class ValidateWeatherForm(FormValidationAction):
             dispatcher.utter_message(text="invalid date {}".format(slot_value))
             return {"date": None}
 
+
+class ValidateWeatherSummaryForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_weather_summary_form"
+
+    def validate_date(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict
+    ) -> Dict[Text, Any]:
+
+        parsed_date = parse_date(slot_value)
+
+        if parsed_date != None:
+            if -4 < parsed_date < 4:
+                return {"date": slot_value}
+            else:
+                dispatcher.utter_message(text="date {} not in range".format(slot_value))
+                return {"date": None}
+        else:
+            dispatcher.utter_message(text="invalid date {}".format(slot_value))
+            return {"date": None}
