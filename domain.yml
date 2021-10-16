@@ -1,24 +1,22 @@
 version: '2.0'
-
-
 session_config:
   session_expiration_time: 120
   carry_over_slots_to_new_session: true
 
 
 intents:
+- inform
 - greet
 - goodbye
 - affirm
 - deny
-- inform
 - inform_summary
 
 
 entities:
-  - location
-  - date
-  - weather_condition
+- date
+- location
+- weather_condition
 
 
 slots:
@@ -28,40 +26,62 @@ slots:
   date:
     type: text
     influence_conversation: true
-  weather:
+  weather_condition:
     type: text
     influence_conversation: true
-  weather_condition:
+  weather:
     type: text
     influence_conversation: true
   summary:
     type: text
     influence_conversation: true
 
+
 responses:
   utter_greet:
-    - text: ආයුබෝවන්! ඔබට අවශ්‍ය උපකාරය කුමක්ද?
-    - text: සුබ දවසක්! ඔබට කාලගුණය දැනගැනීමට පුලුවන්
+  - text: ආයුබෝවන්! ඔබට අවශ්‍ය උපකාරය කුමක්ද?
+  - text: සුබ දවසක්! ඔබට කාලගුණය දැනගැනීමට පුලුවන්
   utter_goodbye:
-    - text: බායි!
-    - text: නැවත හමුවෙමු!
-    - text: සුබ දවසක්!
-  utter_weather:
-    - condition:
-      - type: slot
-        name: weather_condition
-        value: null
-      text: "{weather}"
-    - text: "{weather_condition} - {weather}"
+  - text: බායි!
+  - text: නැවත හමුවෙමු!
+  - text: සුබ දවසක්!
   utter_weather_summary:
-    - text: "කාලගුණ සාරාංශය - {summary}"
+  - text: කාලගුණ සාරාංශය - {summary}
+  utter_ask_location:
+  - text: what is the location?
+  utter_ask_date:
+  - text: what is the date?
+  utter_submit:
+  - condition:
+        - type: slot
+          name: weather_condition
+          value: null
+    text: '{date} දින {location} කාලගුණය පිළිබද තොරතුරු සොයමින් පවතී.'
+  - text: '{date} දින {location} {weather_condition} පිළිබද තොරතුරු සොයමින් පවතී.'
+  utter_weather:
+  - text: '{weather}'
 
 
 actions:
-  - utter_goodbye
-  - utter_greet
-  - utter_weather
-  - utter_weather_summary
-  - action_weather_search
-  - action_weather_summary_search
-  - action_validate_date
+- action_validate_date
+- action_weather_search
+- action_weather_summary_search
+- utter_goodbye
+- utter_greet
+- utter_submit
+- utter_weather
+- utter_weather_summary
+- action_reset_weather_condition
+- utter_ask_location
+- utter_ask_date
+
+
+forms:
+  weather_form:
+    required_slots:
+      date:
+      - type: from_entity
+        entity: date
+      location:
+      - type: from_entity
+        entity: location

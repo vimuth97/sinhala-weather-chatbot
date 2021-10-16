@@ -9,13 +9,14 @@ from actions.helpers import parse_date
 
 
 class ActionWeatherSearch(Action):
-
+    
     def name(self) -> Text:
         return "action_weather_search"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
         location = tracker.get_slot("location")
         date  = tracker.get_slot("date")
         parsed_date = parse_date(date)
@@ -23,15 +24,18 @@ class ActionWeatherSearch(Action):
 
         if not condition:
             condition = "කාලගුණය"
-        dispatcher.utter_message(text="{} දින {} {} පිළිබද තොරතුරු සොයමින් පවතී.".format(date, location, condition))
-        return [
-                SlotSet("weather", weather_data[location][parsed_date][condition]),
-                SlotSet("weather_condition", None)
-                ]
+        if parse_date:
+            if -4 < parsed_date < 4:
+                return [SlotSet("weather", weather_data[location][parsed_date][condition])]
+            else:
+                dispatcher.utter_message(text="date {} not in range".format(date))
+                return []
+        else:
+            dispatcher.utter_message(text="invalid date {}".format(date))
+            return []
 
 
 class ActionWeatherSummarySearch(Action):
-    print("hi")
     
     def name(self) -> Text:
         return "action_weather_summary_search"
@@ -53,6 +57,18 @@ class ActionWeatherSummarySearch(Action):
         else:
             dispatcher.utter_message(text="invalid date {}".format(date))
             return []
+
+
+class ActionResetWeatherCondition(Action):
+    
+    def name(self) -> Text:
+        return  "action_reset_weather_condition"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        return[SlotSet("weather_condition", None)]
 
 
 class ActionValidateDate(Action):

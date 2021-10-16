@@ -6,3 +6,34 @@ rules:
   steps:
   - intent: goodbye
   - action: utter_goodbye
+
+- rule: Weather summary anytime the user requests summary
+  steps:
+  - intent: inform_summary
+  - action: action_weather_summary_search
+  - slot_was_set: 
+    - summary: "from database"
+  - action: utter_weather_summary
+
+- rule: Activate form
+  steps:
+  - intent: inform
+  - action: weather_form
+  - active_loop: weather_form
+
+- rule: Submit form
+  condition:
+  - active_loop: weather_form
+  steps:
+  - action: weather_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit
+  - action: action_weather_search
+  - slot_was_set:
+    - weather: "from database"
+  - action: utter_weather
+  - action: action_reset_weather_condition
+  - slot_was_set:
+    - weather_condition: null

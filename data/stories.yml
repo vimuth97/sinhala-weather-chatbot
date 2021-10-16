@@ -1,49 +1,66 @@
 version: "2.0"
 
 stories:
-- story: happy path
+- story: simple path
   steps:
   - intent: greet
   - action: utter_greet
+  - intent: goodbye
+  - action: utter_goodbye
+
+
+- story: interactive_story_1
+  steps:
   - intent: inform
     entities:
-    - location: "මඩකලපුව"
-    - date: "පෙරේදා"
-    - weather_condition: "සුළග"
+    - weather_condition: ආර්ද්‍රතාවය
+    - location: ගාල්ල
+    - date: 10/13
+  - slot_was_set:
+    - location: ගාල්ල
+  - slot_was_set:
+    - date: 10/13
+  - slot_was_set:
+    - weather_condition: ආර්ද්‍රතාවය
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+    - date: 10/13
+  - slot_was_set:
+    - location: ගාල්ල
+  - slot_was_set:
+    - weather_condition: ආර්ද්‍රතාවය
+  - slot_was_set:
+    - date: 10/13
+  - slot_was_set:
+    - location: ගාල්ල
+  - slot_was_set:
+    - weather_condition: ආර්ද්‍රතාවය
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit
   - action: action_weather_search
-  - slot_was_set: 
-    - weather: "from database"
+  - slot_was_set:
+    - weather: "උපරිම සාපේක්ෂ ආර්ද්‍රතාවය - 95%\nඅවම සාපේක්ෂ ආර්ද්‍රතාවය - 60%"
+  - action: utter_weather
+  - action: action_reset_weather_condition
+  - slot_was_set:
     - weather_condition: null
-  - action: utter_weather 
-  - intent: inform_summary
-  - action: action_weather_summary_search
-  - slot_was_set: 
-    - summary: "from database"
-  - action: utter_weather_summary
-  - intent: goodbye
-  - action: utter_goodbye
 
 
-- story: happy path summary
+- story: interactive_story_2
   steps:
   - intent: greet
   - action: utter_greet
   - intent: inform_summary
+    entities:
+    - date: 10-15
+  - slot_was_set:
+    - date: 10-15
   - action: action_weather_summary_search
-  - slot_was_set: 
-    - summary: "from database"
+  - slot_was_set:
+    - summary: iye lanakawema summary eka
   - action: utter_weather_summary
   - intent: goodbye
   - action: utter_goodbye
-
-
-# - story: sad path 1
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_unhappy
-#   - action: utter_cheer_up
-#   - action: utter_did_that_help
-#   - intent: affirm
-#   - action: utter_happy
-
