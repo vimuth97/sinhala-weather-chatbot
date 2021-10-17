@@ -13,7 +13,7 @@ pipeline:
     max_ngram: 4
   - name: DIETClassifier
     constrain_similarities: true
-    epochs: 100
+    epochs: 300
   - name: EntitySynonymMapper
   - name: ResponseSelector
     constrain_similarities: true
@@ -21,6 +21,7 @@ pipeline:
 
 policies:
   - name: MemoizationPolicy
+    max_history: 3
   - name: RulePolicy
   - name: UnexpecTEDIntentPolicy
     max_history: 3

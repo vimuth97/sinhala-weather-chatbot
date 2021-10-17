@@ -1,13 +1,27 @@
 digraph  {
 0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
 "-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
-1 [class=active, fontsize=12, label=action_session_start];
-2 [class=active, fontsize=12, label=weather_summary_form];
-3 [class="intent dashed active", label="  ?  ", shape=rect];
-4 [class="intent active", fillcolor=lightblue, label="කාලගුණ සාරාංශය කොහොමද?", shape=rect, style=filled];
+1 [class=active, fontsize=12, label=weather_summary_form];
+2 [class="", fontsize=12, label=utter_submit_summary];
+"-4" [class=ellipsis, label="..."];
+5 [class="", fontsize=12, label=utter_greet];
+6 [class="", fontsize=12, label=weather_form];
+"-6" [class=ellipsis, label="..."];
+"-10" [class=ellipsis, label="..."];
+12 [class="intent dashed active", label="  ?  ", shape=rect];
+13 [class="intent active", fillcolor=lightblue, label="කාලගුණ සාරාංශය මොන වගේද", shape=rect, style=filled];
+14 [class=intent, fillcolor=lightblue, label=None, shape=rect, style=filled];
+15 [class=intent, fillcolor=lightblue, label=None, shape=rect, style=filled];
 0 -> "-1"  [class="", key=NONE, label=""];
-0 -> 1  [class=active, key=NONE, label=""];
-1 -> 4  [class=active, key=0];
-2 -> 3  [class=active, key=NONE, label=""];
-4 -> 2  [class=active, key=0];
+0 -> 13  [class=active, key=0];
+0 -> 14  [class="", key=0];
+0 -> 15  [class="", key=0];
+1 -> 2  [class="", key=NONE, label=""];
+1 -> 12  [class=active, key=NONE, label=""];
+2 -> "-4"  [class="", key=NONE, label=""];
+5 -> "-10"  [class="", key=NONE, label=""];
+6 -> "-6"  [class="", key=NONE, label=""];
+13 -> 1  [class=active, key=0];
+14 -> 5  [class="", key=0];
+15 -> 6  [class="", key=0];
 }

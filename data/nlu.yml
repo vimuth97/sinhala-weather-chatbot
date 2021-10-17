@@ -71,12 +71,15 @@ nlu:
     - [අද](date) සබරගමුව(location) [සුලන්](weather_condition) කීයද?
     - [10/15](date)
     - [10-15](date)
+    - [ඊයෙ](date)
+    - [අද](date)
+    - [හෙට](date)
+    - [අනිද්දා](date)
+    - [පෙරේදා](date)
     - [සබරගමුව](location)
     - කාලගුණය දැනගන්න පුලුවන්ද?
     - [සුලන්](weather_condition) මොන වගේද
     - [ආර්ද්රතාව](weather_condition) මොන වගේද
-    - [1/25](date)
-    - [3-31](date)
 
 - intent: inform_summary
   examples: |
@@ -86,6 +89,11 @@ nlu:
     - [01/31](date) කාලගුණ සාරාංශය දැනගන්න පුලුවන්ද?
     - [10/15](date)
     - [10-15](date)
+    - [ඊයෙ](date)
+    - [අද](date)
+    - [හෙට](date)
+    - [අනිද්දා](date)
+    - [පෙරේදා](date)
     - කාලගුණ සාරාංශය කොහොමද?
 
 - lookup: weather_condition
