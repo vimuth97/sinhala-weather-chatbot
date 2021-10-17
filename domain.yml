@@ -12,7 +12,6 @@ intents:
 - deny
 - inform_summary
 
-
 entities:
 - date
 - location
@@ -72,13 +71,19 @@ responses:
   - text: '{date} දින කාලගුණ සාරාංශය සොයමින් පවතී.'
   utter_weather:
   - text: '{weather}'
-  # utter_please_rephrase:
-  # - text: 'ඔබට දැනගැනීමට අවශ්‍ය කුමක්ද?'
-  #   buttons:
-  #   - title: "කාලගුණය"
-  #     payload: '/inform'
-  #   - title: "කාලගුණ සාරාංශය"
-  #     payload: '/inform_summary'
+  utter_please_rephrase:
+  - text: 'ඔබගේ අවශ්‍යතාවය මට අපැහැදිලියි.\nඔබට දැනගැනීමට අවශ්‍ය කුමක්ද?'
+    buttons:
+    - title: "කාලගුණය"
+      payload: '/inform'
+    - title: "වර්ෂාපතනය"
+      payload: '/inform{{"weather_condition":"වර්ෂාපතනය"}}'
+    - title: "ආර්ද්‍රතාවය"
+      payload: '/inform{{"weather_condition":"ආර්ද්‍රතාවය"}}'
+    - title: "සුළග"
+      payload: '/inform{{"weather_condition":"සුළග"}}'
+    - title: "කාලගුණ සාරාංශය"
+      payload: '/inform_summary'
 
 
 actions:

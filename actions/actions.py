@@ -103,3 +103,4 @@ class ValidateWeatherSummaryForm(FormValidationAction):
         else:
             dispatcher.utter_message(text="ඇතුලත් කල දිනය {} අවලංගුයි".format(slot_value))
             return {"date": None}
+

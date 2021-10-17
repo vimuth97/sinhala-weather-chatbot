@@ -14,16 +14,21 @@ pipeline:
   - name: DIETClassifier
     constrain_similarities: true
     epochs: 300
-    model_confidence: linear_norm
+    model_confidence: softmax
   - name: EntitySynonymMapper
   - name: ResponseSelector
     constrain_similarities: true
     epochs: 100
+  - name: FallbackClassifier
+    threshold: 0.7
 
 policies:
   - name: MemoizationPolicy
     max_history: 3
   - name: RulePolicy
+    # core_fallback_threshold: 1.0
+    # core_fallback_action_name: action_default_fallback
+    # enable_fallback_prediction: true
   - name: UnexpecTEDIntentPolicy
     max_history: 3
     epochs: 100
