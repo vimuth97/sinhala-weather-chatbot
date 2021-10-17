@@ -14,6 +14,8 @@ pipeline:
   - name: DIETClassifier
     constrain_similarities: true
     epochs: 300
+  - name: FallbackClassifier
+    threshold: 0.2
   - name: EntitySynonymMapper
   - name: ResponseSelector
     constrain_similarities: true

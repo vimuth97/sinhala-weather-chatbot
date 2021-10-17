@@ -72,6 +72,13 @@ responses:
   - text: '{date} දින කාලගුණ සාරාංශය සොයමින් පවතී.'
   utter_weather:
   - text: '{weather}'
+  utter_please_rephrase:
+  - text: 'ඔබට දැනගැනීමට අවශ්‍ය කුමක්ද?'
+    buttons:
+    - title: "කාලගුණය"
+      payload: '/inform'
+    - title: "කාලගුණ සාරාංශය"
+      payload: '/inform_summary'
 
 
 actions:
@@ -89,6 +96,7 @@ actions:
 - utter_ask_date
 - validate_weather_form
 - validate_weather_summary_form
+- utter_please_rephrase
 
 
 forms:

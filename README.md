@@ -16,3 +16,6 @@
 * `rasa interactive` - load most recently trained model on interactive mode
 * `rasa run` -  start a new server with the trained model
 * `rasa run actions` - run actions on a server
+* `rasa run --enable-api --cors="*"` - run server allow API and all CORS
+
+* `python -m http.server` - start basic http server
