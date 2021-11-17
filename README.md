@@ -20,7 +20,7 @@
 7. Chat with Sinhala Weather Chatbot and enjoy
 
 ## What you can ask
-* General weather conditions for a specific location and a given date
+* General weather conditions for a specific location and a given date(3 previous days, current date and 3 upcoming days)
     - Location can be either a district or a province in Sri Lanka
     - Date can be in formats - mm/dd or mm-dd
 * Specific weather information like rainfall, wind speed or humidity
