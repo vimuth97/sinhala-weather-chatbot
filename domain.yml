@@ -72,7 +72,7 @@ responses:
   utter_weather:
   - text: '{weather}'
   utter_please_rephrase:
-  - text: 'ඔබගේ අවශ්‍යතාවය මට අපැහැදිලියි.\nඔබට දැනගැනීමට අවශ්‍ය කුමක්ද?'
+  - text: 'ඔබගේ අවශ්‍යතාවය මට අපැහැදිලියි. ඔබට දැනගැනීමට අවශ්‍ය කුමක්ද?'
     buttons:
     - title: "කාලගුණය"
       payload: '/inform'

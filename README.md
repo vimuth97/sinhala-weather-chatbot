@@ -16,8 +16,9 @@
 3. Go to root folder and run `rasa train`
 4. Run `rasa run actions` on a separate terminal
 5. Run `rasa shell` to chat with the bot in the terminal or run `rasa run --enable-api --cors="*"` to chat on a browser with the UI
-6. Visit [http://localhost:8000/](http://localhost:8000/) on your browser
-7. Chat with Sinhala Weather Chatbot and enjoy
+6. Run `python -m http.server` to start a http server
+7. Visit [http://localhost:8000/](http://localhost:8000/) on your browser
+8. Chat with Sinhala Weather Chatbot and enjoy
 
 ## What you can ask
 * General weather conditions for a specific location and a given date(3 previous days, current date and 3 upcoming days)
